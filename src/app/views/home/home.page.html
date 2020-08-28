@@ -12,19 +12,10 @@
       Adicionar Contato
     </ion-button>
     <ion-list>
-      <ion-item (click)='open(1)'>
+      <ion-item *ngFor='let pessoa of pessoas' (click)='open(pessoa.id)'>
         <ion-label>
-          Pedro Henrique
-          <h3>(77) 99862-7414</h3>
-          <h3>pedro.phs@hotmail.com.br</h3>
-        </ion-label>
-        <ion-icon slot='end' name='chevron-forward'></ion-icon>
-      </ion-item>
-      <ion-item (click)='open(2)'>
-        <ion-label>
-          Ana Carolina
-          <h3>(77) 98852-1409</h3>
-          <h3>ana.carol@hotmail.com</h3>
+          {{pessoa.nome + ' ' + pessoa.sobrenome}}
+          <h3>{{pessoa.email}}</h3>
         </ion-label>
         <ion-icon slot='end' name='chevron-forward'></ion-icon>
       </ion-item>

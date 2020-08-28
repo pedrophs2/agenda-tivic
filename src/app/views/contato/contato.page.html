@@ -17,15 +17,15 @@
         </ion-list-header>
         <ion-item>
           <ion-label position='floating'>Nome</ion-label>
-          <ion-input [(ngModel)]='person.name' name='name'></ion-input>
+          <ion-input [(ngModel)]='person.nome' name='name'></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position='floating'>Sobrenome</ion-label>
-          <ion-input [(ngModel)]='person.surname' name='surname'></ion-input>
+          <ion-input [(ngModel)]='person.sobrenome' name='surname'></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position='floating'>Data de Nascimento</ion-label>
-          <ion-input [brmasker]='{mask: "00/00/0000"}' [(ngModel)]='person.birth' name='birth' maxlength='10'></ion-input>
+          <ion-input [brmasker]='{mask: "00/00/0000"}' [(ngModel)]='person.nascimento' name='birth' maxlength='10'></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position='floating'>Email</ion-label>
@@ -41,7 +41,7 @@
         </ion-list-header>
         <ion-item>
           <ion-label position='floating'>Telefone</ion-label>
-          <ion-input [brmasker]="{mask: '(00) 00000-0000'}" [(ngModel)]='phone' name='phone' maxlength='15'></ion-input>
+          <ion-input [brmasker]="{mask: '(00) 00000-0000'}" [(ngModel)]='telefone' name='phone' maxlength='15'></ion-input>
           <ion-icon slot='end' name='add-outline' (click)='addPhone()'></ion-icon>
         </ion-item>
       </ion-list>
@@ -54,7 +54,7 @@
         </ion-list-header>
         <ion-item>
           <ion-label position='floating'>Endereço</ion-label>
-          <ion-input [(ngModel)]='address' name='address'></ion-input>
+          <ion-input [(ngModel)]='endereco' name='address'></ion-input>
           <ion-icon slot='end' name='add-outline' (click)='addAddress()'></ion-icon>
         </ion-item>
       </ion-list>

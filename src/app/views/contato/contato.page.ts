@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MajLibService } from 'src/app/services/maj-lib.service';
-import { ValidatorService } from 'src/app/services/validator.service';
 
 @Component({
   selector: 'app-contato',
@@ -10,47 +9,47 @@ import { ValidatorService } from 'src/app/services/validator.service';
 export class ContatoPage implements OnInit {
 
   person = {
-    name: '',
-    surname: '',
-    birth: '',
+    nome: '',
+    foto: '',
+    sobrenome: '',
+    nascimento: '',
     email: '',
-    phones: [],
-    addresses: []
+    telefones: [],
+    enderecos: []
   };
 
-  phone = '';
-  address = '';
+  telefone = '';
+  endereco = '';
 
-  constructor(private utils: MajLibService, private validator: ValidatorService) { }
+  constructor(private utils: MajLibService) { }
 
   ngOnInit() {
   }
 
   async addPhone(){
     if (await this.validatePhone()){
-      this.person.phones.push(this.phone);
+      this.person.telefones.push(this.telefone);
     }
   }
 
   async addAddress(){
     if (await this.validadeAddress()){
-      this.person.addresses.push(this.address);
+      this.person.enderecos.push(this.endereco);
     }
   }
 
   async postPerson(){
     if (await this.validatePhone() && await this.validadeAddress()){
-      this.person.phones.push(this.phone);
-      this.person.addresses.push(this.address);
-      // this.validator.validPerson(this.person);
+      this.person.telefones.push(this.telefone);
+      this.person.enderecos.push(this.endereco);
     }
     console.log(this.person);
   }
 
   async validatePhone(){
-    if (this.person.phones.indexOf(this.phone) === -1 && this.phone !== ''){
+    if (this.person.telefones.indexOf(this.telefone) === -1 && this.telefone !== ''){
       return true;
-    }else if (this.phone === ''){
+    }else if (this.telefone === ''){
       this.utils.toast('Telefone', 'Não é possível inserir um telefone vazio', 2000, ['OK']);
       return false;
     }else{
@@ -60,9 +59,9 @@ export class ContatoPage implements OnInit {
   }
 
   async validadeAddress(){
-    if (this.person.addresses.indexOf(this.address) === -1 && this.address !== ''){
+    if (this.person.enderecos.indexOf(this.endereco) === -1 && this.endereco !== ''){
       return true;
-    }else if (this.address === ''){
+    }else if (this.endereco === ''){
       this.utils.toast('Endereço', 'Não é possível inserir um endereço vazio', 2000, ['OK']);
       return false;
     }else{

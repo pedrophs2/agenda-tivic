@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { ApiHerokuService } from 'src/app/services/api-heroku.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,15 @@ import { NavController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
 
-  constructor(private navc: NavController) { }
+  pessoas: any;
+
+  constructor(private navc: NavController, private api: ApiHerokuService) { }
 
   ngOnInit() {
+    this.api.getPessoas().subscribe(res => {
+      console.log(res);
+      this.pessoas = res;
+    });
   }
 
   create(){
@@ -18,6 +25,7 @@ export class HomePage implements OnInit {
   }
 
   open(id){
+    this.api.pessoa = id;
     this.navc.navigateForward('Contato/' + id);
   }
 
