@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agenda</ion-title>
+    <ion-icon slot='end' name='add-outline' id='plus-button' color='primary' (click)='create()'></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id='ion-body'>
+    <ion-button expand='block' color='secondary' fill='outline' (click)='create()'>
+      <ion-icon slot='start' name='person-add-outline'></ion-icon>
+      Adicionar Contato
+    </ion-button>
+    <ion-list>
+      <ion-item (click)='open(1)'>
+        <ion-label>
+          Pedro Henrique
+          <h3>(77) 99862-7414</h3>
+          <h3>pedro.phs@hotmail.com.br</h3>
+        </ion-label>
+        <ion-icon slot='end' name='chevron-forward'></ion-icon>
+      </ion-item>
+      <ion-item (click)='open(2)'>
+        <ion-label>
+          Ana Carolina
+          <h3>(77) 98852-1409</h3>
+          <h3>ana.carol@hotmail.com</h3>
+        </ion-label>
+        <ion-icon slot='end' name='chevron-forward'></ion-icon>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
