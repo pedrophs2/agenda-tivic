@@ -78,8 +78,8 @@ export class MajLibService {
   }
 
   validateEmail(email: string){
-    if (!email.includes('@tivic.com')){
-      this.toast('Email inválido', 'Email inválido, utilize emails @tivic.com', 2000, ['OK']);
+    if (!email.includes('@tivic.com.br')){
+      this.toast('Email inválido', 'Email inválido, utilize emails @tivic.com.br', 2000, ['OK']);
       return true;
     }else{
       return false;
