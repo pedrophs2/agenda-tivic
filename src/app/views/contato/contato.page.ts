@@ -45,15 +45,18 @@ export class ContatoPage implements OnInit {
   populate_view(){
     this.populate_person();
     if (this.personCtrl.pessoa == null){
+      console.log('null');
       this.populate_phones(null);
       this.populate_addresses(0);
     }else{
+      console.log('filled');
       this.populate_phones(this.personCtrl.pessoa.id);
       this.populate_addresses(this.personCtrl.pessoa.id);
     }
   }
 
   populate_person(){
+    console.log('person');
     if (this.personCtrl.pessoa == null){
       this.button = 'Cadastrar';
       this.show = true;
@@ -81,7 +84,7 @@ export class ContatoPage implements OnInit {
 
   populate_addresses(id){
     let list: any;
-    let addresses = new Array();
+    const addresses = new Array();
     this.addressCtrl.getAddresses().subscribe(res => {
       list = res;
       list.forEach(address => {
@@ -94,19 +97,20 @@ export class ContatoPage implements OnInit {
   }
 
   async postPerson(){
-    if (this.button === 'Cadastrar'){
-      this.person.nascimento = this.utils.hardDate(this.person.nascimento);
-      this.personCtrl.createPerson(this.person).subscribe(res => {
-        this.navc.pop();
-      });
-    }else{
-      this.person.nascimento = this.utils.hardDate(this.person.nascimento);
-      console.log(this.person);
-      this.personCtrl.updatePerson(this.person.id, this.person).subscribe(res => {
-        this.navc.pop();
-      });
+    if (!this.utils.validateNome(this.person.nome, this.person.sobrenome) && !this.utils.validateEmail(this.person.email)){
+      if (this.button === 'Cadastrar'){
+        this.person.nascimento = this.utils.hardDate(this.person.nascimento);
+        this.personCtrl.createPerson(this.person).subscribe(res => {
+          this.navc.pop();
+        });
+      }else{
+        this.person.nascimento = this.utils.hardDate(this.person.nascimento);
+        console.log(this.person);
+        this.personCtrl.updatePerson(this.person.id, this.person).subscribe(res => {
+          this.navc.pop();
+        });
+      }
     }
-
   }
 
   async confirmDel(id){
@@ -150,6 +154,7 @@ export class ContatoPage implements OnInit {
 
   openAddress(address){
     this.addressCtrl.address = address;
+    console.log(address);
     this.navc.navigateForward('Address');
   }
 }

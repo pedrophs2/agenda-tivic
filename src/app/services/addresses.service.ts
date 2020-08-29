@@ -19,7 +19,7 @@ export class AddressesService {
   }
 
   updateAddress(id, address){
-    return this.http.post('https://agendjango.herokuapp.com/api/enderecos/' + id + '/', address);
+    return this.http.put('https://agendjango.herokuapp.com/api/enderecos/' + id + '/', address);
   }
 
   deleteAddress(id){

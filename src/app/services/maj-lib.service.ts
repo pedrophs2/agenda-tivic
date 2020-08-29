@@ -60,9 +60,13 @@ export class MajLibService {
     return resultado;
   }
 
-  dateConvert(date, format: string){
-    const conv = this.date.transform(date, format);
-    return conv;
+  dateConvert(date: any, format: string){
+    if (date.substr(2, 1) == '/'){
+      return date;
+    }else{
+      const conv = this.date.transform(date, format);
+      return conv;
+    }
   }
 
   hardDate(date: string){
@@ -71,5 +75,23 @@ export class MajLibService {
     const day = date.substr(0, 2);
     const res = year + '-' + month + '-' + day;
     return res;
+  }
+
+  validateEmail(email: string){
+    if (!email.includes('@tivic.com')){
+      this.toast('Email inválido', 'Email inválido, utilize emails @tivic.com', 2000, ['OK']);
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validateNome(name: string, surname: string){
+    if (name.toLowerCase() === surname.toLowerCase()){
+      this.toast('Erro', 'Nome e sobrenome não podem ser iguais.', 2000, ['OK']);
+      return true;
+    }else{
+      return false;
+    }
   }
 }

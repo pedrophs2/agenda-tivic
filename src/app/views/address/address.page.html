@@ -38,7 +38,7 @@
       </ion-item>
       <ion-item>
         <ion-label position='stacked'>CEP</ion-label>
-        <ion-input [(ngModel)]='address.cep' [brmasker]='{mask: "00000-000"}'></ion-input>        
+        <ion-input [(ngModel)]='address.cep' [brmasker]='{mask: "00000-000"}' maxlength='9'></ion-input>        
       </ion-item>
       <ion-item>
         <ion-label position='stacked'>Cidade</ion-label>
@@ -52,6 +52,10 @@
   </div>
 
   <div class='ion-body'>
-    <ion-button expand='block' color='secondary' fill='outline' (click)='createAddress()'>Salvar</ion-button>
+    <ion-button expand='block' color='secondary' fill='outline' (click)='addressSubmit()'>{{button}}</ion-button>
+    <ion-button expand='block' color='danger' fill='outline' [hidden]=show id='delete-button' (click)='confirmDel(address.id)'>
+      <ion-icon slot='start' name='trash-outline'></ion-icon>
+       Excluir
+    </ion-button>
   </div>
 </ion-content>
