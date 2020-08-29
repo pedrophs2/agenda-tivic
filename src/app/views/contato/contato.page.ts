@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MajLibService } from 'src/app/services/maj-lib.service';
 import { NavController } from '@ionic/angular';
 import { PeopleService } from 'src/app/services/people.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-contato',
@@ -11,87 +12,53 @@ import { PeopleService } from 'src/app/services/people.service';
 export class ContatoPage implements OnInit {
 
   id: any;
-  pessoa: any;
   button: string;
   show: boolean;
 
   person = {
+    id: '',
     nome: '',
-    foto: '',
     sobrenome: '',
     nascimento: '',
-    email: '',
-    telefones: [],
-    enderecos: []
+    email: ''
   };
 
   telefone = '';
   endereco = '';
 
-  constructor(private utils: MajLibService, private personCtrl: PeopleService, private navc: NavController) { }
+  constructor(private utils: MajLibService, private personCtrl: PeopleService, private navc: NavController, private date: DatePipe) { }
 
   ngOnInit() {
     if (this.personCtrl.pessoa == null){
-      this.pessoa = {
+      this.person = {
+        id: '',
         nome: '',
-        foto: '',
         sobrenome: '',
         nascimento: '',
-        email: '',
-        telefones: [],
-        enderecos: []
+        email: ''
       };
       this.button = 'Cadastrar';
       this.show = true;
       return;
     }else{
-      this.pessoa = this.personCtrl.pessoa;
+      this.person = this.personCtrl.pessoa;
+      this.person.nascimento = this.utils.dateConvert(this.person.nascimento, 'dd/MM/yyyy');
       this.button = 'Salvar';
       this.show = false;
     }
   }
 
-  async addPhone(){
-    if (await this.validatePhone()){
-      this.person.telefones.push(this.telefone);
-    }
-  }
-
-  async addAddress(){
-    if (await this.validadeAddress()){
-      this.person.enderecos.push(this.endereco);
-    }
-  }
-
   async postPerson(){
-    if (await this.validatePhone() && await this.validadeAddress()){
-      this.person.telefones.push(this.telefone);
-      this.person.enderecos.push(this.endereco);
-    }
-  }
+    // if (await this.validatePhone() && await this.validadeAddress()){
+    //   this.person.telefones.push(this.telefone);
+    //   this.person.enderecos.push(this.endereco);
+    // }
+    // if (this.button === 'Cadastrar'){
+    //   this.personCtrl.createPerson(this);
+    // }
 
-  async validatePhone(){
-    if (this.person.telefones.indexOf(this.telefone) === -1 && this.telefone !== ''){
-      return true;
-    }else if (this.telefone === ''){
-      this.utils.toast('Telefone', 'Não é possível inserir um telefone vazio', 2000, ['OK']);
-      return false;
-    }else{
-      this.utils.toast('Telefone', 'Telefone já cadastrado.', 2000, ['OK']);
-      return false;
-    }
-  }
-
-  async validadeAddress(){
-    if (this.person.enderecos.indexOf(this.endereco) === -1 && this.endereco !== ''){
-      return true;
-    }else if (this.endereco === ''){
-      this.utils.toast('Endereço', 'Não é possível inserir um endereço vazio', 2000, ['OK']);
-      return false;
-    }else{
-      this.utils.toast('Endereço', 'Endereço já cadastrado.', 2000, ['OK']);
-      return false;
-    }
+    this.person.nascimento = this.utils.hardDate(this.person.nascimento);
+    console.log(this.person);
   }
 
   async confirmDel(id){
@@ -117,5 +84,4 @@ export class ContatoPage implements OnInit {
   createAddress(){
     this.navc.navigateForward('address');
   }
-
 }

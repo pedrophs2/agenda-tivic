@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ToastController, AlertController } from '@ionic/angular';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MajLibService {
 
-  constructor(private toastCtrl: ToastController, private alertCtrl: AlertController) { }
+  constructor(private toastCtrl: ToastController, private alertCtrl: AlertController, private date: DatePipe) { }
 
   async toast(Title: string, Message: string, Duration: number, Buttons: [string]){
     const Toast = await this.toastCtrl.create({
@@ -57,5 +58,18 @@ export class MajLibService {
     });
 
     return resultado;
+  }
+
+  dateConvert(date, format: string){
+    const conv = this.date.transform(date, format);
+    return conv;
+  }
+
+  hardDate(date: string){
+    const year = date.substr(6, 4);
+    const month = date.substr(3, 2);
+    const day = date.substr(0, 2);
+    const res = year + '-' + month + '-' + day;
+    return res;
   }
 }
