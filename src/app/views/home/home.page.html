@@ -12,10 +12,11 @@
       Adicionar Contato
     </ion-button>
     <ion-list>
-      <ion-item *ngFor='let pessoa of pessoas' (click)='open(pessoa.id)'>
+      <ion-item *ngFor='let pessoa of pessoas' (click)='open(pessoa)'>
         <ion-label>
           {{pessoa.nome + ' ' + pessoa.sobrenome}}
           <h3>{{pessoa.email}}</h3>
+          <h3>{{pessoa.nascimento | date: 'dd/MM/yyyy'}}</h3>
         </ion-label>
         <ion-icon slot='end' name='chevron-forward'></ion-icon>
       </ion-item>

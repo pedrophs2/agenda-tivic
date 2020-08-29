@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { ApiHerokuService } from 'src/app/services/api-heroku.service';
+import { PeopleService } from 'src/app/services/people.service';
 
 @Component({
   selector: 'app-home',
@@ -11,22 +11,28 @@ export class HomePage implements OnInit {
 
   pessoas: any;
 
-  constructor(private navc: NavController, private api: ApiHerokuService) { }
+  constructor(private navc: NavController, private personCtrl: PeopleService) { }
 
   ngOnInit() {
-    this.api.getPessoas().subscribe(res => {
-      console.log(res);
+    this.personCtrl.getPeople().subscribe(res => {
+      this.pessoas = res;
+    });
+  }
+
+  ionViewDidEnter(){
+    this.personCtrl.getPeople().subscribe(res => {
       this.pessoas = res;
     });
   }
 
   create(){
+    this.personCtrl.pessoa = null;
     this.navc.navigateForward('Contato');
   }
 
-  open(id){
-    this.api.pessoa = id;
-    this.navc.navigateForward('Contato/' + id);
+  open(pessoa){
+    this.personCtrl.pessoa = pessoa;
+    this.navc.navigateForward('Contato');
   }
 
 }

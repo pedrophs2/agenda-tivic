@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MajLibService } from 'src/app/services/maj-lib.service';
+import { NavController } from '@ionic/angular';
+import { PeopleService } from 'src/app/services/people.service';
 
 @Component({
   selector: 'app-contato',
@@ -7,6 +9,11 @@ import { MajLibService } from 'src/app/services/maj-lib.service';
   styleUrls: ['../../app.component.scss'],
 })
 export class ContatoPage implements OnInit {
+
+  id: any;
+  pessoa: any;
+  button: string;
+  show: boolean;
 
   person = {
     nome: '',
@@ -21,9 +28,27 @@ export class ContatoPage implements OnInit {
   telefone = '';
   endereco = '';
 
-  constructor(private utils: MajLibService) { }
+  constructor(private utils: MajLibService, private personCtrl: PeopleService, private navc: NavController) { }
 
   ngOnInit() {
+    if (this.personCtrl.pessoa == null){
+      this.pessoa = {
+        nome: '',
+        foto: '',
+        sobrenome: '',
+        nascimento: '',
+        email: '',
+        telefones: [],
+        enderecos: []
+      };
+      this.button = 'Cadastrar';
+      this.show = true;
+      return;
+    }else{
+      this.pessoa = this.personCtrl.pessoa;
+      this.button = 'Salvar';
+      this.show = false;
+    }
   }
 
   async addPhone(){
@@ -43,7 +68,6 @@ export class ContatoPage implements OnInit {
       this.person.telefones.push(this.telefone);
       this.person.enderecos.push(this.endereco);
     }
-    console.log(this.person);
   }
 
   async validatePhone(){
@@ -68,6 +92,30 @@ export class ContatoPage implements OnInit {
       this.utils.toast('Endereço', 'Endereço já cadastrado.', 2000, ['OK']);
       return false;
     }
+  }
+
+  async confirmDel(id){
+    await this.utils.alertDecision('Apagar', 'Deseja mesmo apagar esse contato ?').then((res) => {if (res){
+      this.deletePessoa(id);
+    }});
+  }
+
+  async deletePessoa(id){
+    this.personCtrl.deletePerson(id).subscribe(res => {
+      this.navc.navigateRoot('Home');
+    });
+  }
+
+  goHome(){
+    this.navc.navigateBack('Home');
+  }
+
+  createPhone(){
+    this.navc.navigateForward('phone');
+  }
+
+  createAddress(){
+    this.navc.navigateForward('address');
   }
 
 }

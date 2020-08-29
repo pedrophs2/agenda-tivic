@@ -28,4 +28,34 @@ export class MajLibService {
 
     Alert.present();
   }
+
+  async alertDecision(Title: string, Message: string){
+    const Alert = await this.alertCtrl.create({
+      header: Title,
+      message: Message,
+      buttons: [{
+        text: 'Não',
+        handler: res =>
+        {
+          Alert.dismiss(false);
+          return false;
+        }
+      },
+      {
+        text: 'Sim',
+        handler: res => {
+          Alert.dismiss(true);
+          return false;
+        }
+      }]
+    });
+
+    Alert.present();
+
+    const resultado = Alert.onDidDismiss().then((data) => {
+      return data.data;
+    });
+
+    return resultado;
+  }
 }

@@ -4,6 +4,9 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Contato</ion-title>
+    <ion-buttons slot='end' (click)='goHome()'>
+      <ion-icon id='home-button' slot='end' name='home-outline'></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -16,31 +19,32 @@
           <ion-label>Pessoa</ion-label>
         </ion-list-header>
         <ion-item>
-          <ion-label position='floating'>Nome</ion-label>
-          <ion-input [(ngModel)]='person.nome' name='name'></ion-input>
+          <ion-label position='stacked'>Nome</ion-label>
+          <ion-input [(ngModel)]='person.nome' name='name'>{{pessoa.nome}}</ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position='floating'>Sobrenome</ion-label>
-          <ion-input [(ngModel)]='person.sobrenome' name='surname'></ion-input>
+          <ion-label position='stacked'>Sobrenome</ion-label>
+          <ion-input [(ngModel)]='person.sobrenome' name='surname'>{{pessoa.sobrenome}}</ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position='floating'>Data de Nascimento</ion-label>
-          <ion-input [brmasker]='{mask: "00/00/0000"}' [(ngModel)]='person.nascimento' name='birth' maxlength='10'></ion-input>
+          <ion-label position='stacked'>Data de Nascimento</ion-label>
+          <ion-input [brmasker]='{mask: "00/00/0000"}' [(ngModel)]='person.nascimento' name='birth' maxlength='10'>{{pessoa.nascimento | date: 'dd/MM/yyyy'}}</ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position='floating'>Email</ion-label>
-          <ion-input type='email' [(ngModel)]='person.email' name='email'></ion-input>
+          <ion-label position='stacked'>Email</ion-label>
+          <ion-input type='email' [(ngModel)]='person.email' name='email'>{{pessoa.email}}</ion-input>
         </ion-item>
       </ion-list>
     </div>
   
     <div class="ion-body">
       <ion-list>
-        <ion-list-header>
+        <ion-list-header class='header-click' (click)='createPhone(pessoa.id)'>
           <ion-label>Telefones</ion-label>
+          <ion-button><ion-icon slot='icon-only' name='chevron-forward'></ion-icon></ion-button>
         </ion-list-header>
         <ion-item>
-          <ion-label position='floating'>Telefone</ion-label>
+          <ion-label position='stacked'>Telefone</ion-label>
           <ion-input [brmasker]="{mask: '(00) 00000-0000'}" [(ngModel)]='telefone' name='phone' maxlength='15'></ion-input>
           <ion-icon slot='end' name='add-outline' (click)='addPhone()'></ion-icon>
         </ion-item>
@@ -49,17 +53,24 @@
   
     <div class="ion-body">
       <ion-list>
-        <ion-list-header>
+        <ion-list-header class='header-click' (click)='createAddress(pessoa.id)'>
           <ion-label>Endereços</ion-label>
+          <ion-button><ion-icon slot='icon-only' name='chevron-forward'></ion-icon></ion-button>
         </ion-list-header>
         <ion-item>
-          <ion-label position='floating'>Endereço</ion-label>
+          <ion-label position='stacked'>Endereço</ion-label>
           <ion-input [(ngModel)]='endereco' name='address'></ion-input>
           <ion-icon slot='end' name='add-outline' (click)='addAddress()'></ion-icon>
         </ion-item>
       </ion-list>
     </div>
 
-    <ion-button expand='block' color='secondary' type='submit' fill='outline'>Cadastrar</ion-button>
+    <div class='ion-body'>
+      <ion-button expand='block' color='secondary' type='submit' fill='outline'>{{button}}</ion-button>
+      <ion-button expand='block' color='danger' [hidden]=show fill='outline' id="delete-button" (click)='confirmDel(pessoa.id)'>
+        <ion-icon slot='start' name='trash-outline'></ion-icon>
+        Apagar
+      </ion-button>
+    </div>
   </form>
 </ion-content>
