@@ -23,6 +23,6 @@ export class PeopleService {
   }
 
   deletePerson(id){
-    return this.http.delete('https://agendjango.herokuapp.com/api/pessoas/' + id);
+    return this.http.delete('https://agendjango.herokuapp.com/api/pessoas/' + id + '/');
   }
 }

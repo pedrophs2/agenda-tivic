@@ -43,8 +43,8 @@
           <ion-label>Telefones</ion-label>
           <ion-button><ion-icon slot='icon-only' name='chevron-forward'></ion-icon></ion-button>
         </ion-list-header>
-        <ion-item>
-          <ion-label>(77) 99862-7414</ion-label>
+        <ion-item *ngFor='let phone of phones'>
+          <ion-label>{{phone.numero}}</ion-label>
           <ion-icon slot='end' name='chevron-forward'></ion-icon>
         </ion-item>
       </ion-list>
@@ -56,8 +56,8 @@
           <ion-label>Endereços</ion-label>
           <ion-button><ion-icon slot='icon-only' name='chevron-forward'></ion-icon></ion-button>
         </ion-list-header>
-        <ion-item>
-          <ion-label>Rua João de Barro, 55 - Bateias II</ion-label>
+        <ion-item *ngFor='let address of addresses'>
+          <ion-label>{{address.logradouro}}, {{address.numero}} - {{address.bairro}}</ion-label>
           <ion-icon slot='end' name='chevron-forward'></ion-icon>
         </ion-item>
       </ion-list>
@@ -65,7 +65,7 @@
 
     <div class='ion-body'>
       <ion-button expand='block' color='secondary' type='submit' fill='outline'>{{button}}</ion-button>
-      <ion-button expand='block' color='danger' [hidden]=show fill='outline' id="delete-button" (click)='confirmDel(pessoa.id)'>
+      <ion-button expand='block' color='danger' [hidden]=show fill='outline' id="delete-button" (click)='confirmDel(person.id)'>
         <ion-icon slot='start' name='trash-outline'></ion-icon>
         Apagar
       </ion-button>
