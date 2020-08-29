@@ -11,5 +11,47 @@
 </ion-header>
 
 <ion-content>
+  <div class="ion-body">
+    <ion-list>
+      <ion-item>
+        <ion-label>Tipo</ion-label>
+        <ion-select [(ngModel)]='address.tipo' interface='popover'>
+          <ion-select-option value='1'>Comercial</ion-select-option>
+          <ion-select-option value='2'>Residencial</ion-select-option>
+        </ion-select> 
+      </ion-item>
+      <ion-item>
+        <ion-label position='stacked'>Logradouro</ion-label>
+        <ion-input [(ngModel)]='address.logradouro'></ion-input>        
+      </ion-item>
+      <ion-item>
+        <ion-label position='stacked'>Número</ion-label>
+        <ion-input [(ngModel)]='address.numero'></ion-input>        
+      </ion-item>
+      <ion-item>
+        <ion-label position='stacked'>Complemento</ion-label>
+        <ion-input [(ngModel)]='address.complemento'></ion-input>        
+      </ion-item>
+      <ion-item>
+        <ion-label position='stacked'>Bairro</ion-label>
+        <ion-input [(ngModel)]='address.bairro'></ion-input>        
+      </ion-item>
+      <ion-item>
+        <ion-label position='stacked'>CEP</ion-label>
+        <ion-input [(ngModel)]='address.cep' [brmasker]='{mask: "00000-000"}'></ion-input>        
+      </ion-item>
+      <ion-item>
+        <ion-label position='stacked'>Cidade</ion-label>
+        <ion-input [(ngModel)]='address.cidade'></ion-input>        
+      </ion-item>
+      <ion-item>
+        <ion-label position='stacked'>Estado</ion-label>
+        <ion-input [(ngModel)]='address.uf' (ngModelChange)='address.uf = $event.toLocaleUpperCase()' maxlength='2'></ion-input>        
+      </ion-item>
+    </ion-list>
+  </div>
 
+  <div class='ion-body'>
+    <ion-button expand='block' color='secondary' fill='outline' (click)='createAddress()'>Salvar</ion-button>
+  </div>
 </ion-content>

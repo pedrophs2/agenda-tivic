@@ -20,11 +20,11 @@ const routes: Routes = [
     loadChildren: () => import('./views/contato/contato.module').then( m => m.ContatoPageModule)
   },
   {
-    path: 'phone',
+    path: 'Phone',
     loadChildren: () => import('./views/phone/phone.module').then( m => m.PhonePageModule)
   },
   {
-    path: 'address',
+    path: 'Address',
     loadChildren: () => import('./views/address/address.module').then( m => m.AddressPageModule)
   }
 ];

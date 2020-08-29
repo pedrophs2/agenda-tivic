@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddressesService {
 
+  address: any;
+
   constructor(private http: HttpClient) { }
 
   getAddresses(){

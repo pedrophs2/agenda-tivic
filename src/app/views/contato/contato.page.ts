@@ -67,7 +67,7 @@ export class ContatoPage implements OnInit {
 
   populate_phones(id){
     let list: any;
-    let phones = new Array();
+    const phones = new Array();
     this.phoneCtrl.getPhones().subscribe(res => {
       list = res;
       list.forEach(phone => {
@@ -126,10 +126,30 @@ export class ContatoPage implements OnInit {
   }
 
   createPhone(){
-    this.navc.navigateForward('phone');
+    if (this.personCtrl.pessoa != null){
+      this.phoneCtrl.phone = null;
+      this.navc.navigateForward('Phone');
+    }else{
+      this.utils.toast('Erro', 'É necessário efetuar o cadastro, antes de cadastrar um número.', 2000, ['OK']);
+    }
+  }
+
+  openPhone(phone){
+    this.phoneCtrl.phone = phone;
+    this.navc.navigateForward('Phone');
   }
 
   createAddress(){
-    this.navc.navigateForward('address');
+    if (this.personCtrl.pessoa != null){
+      this.addressCtrl.address = null;
+      this.navc.navigateForward('Address');
+    }else{
+      this.utils.toast('Erro', 'É necessário efetuar o cadastro, antes de cadastrar um endereço.', 2000, ['OK']);
+    }
+  }
+
+  openAddress(address){
+    this.addressCtrl.address = address;
+    this.navc.navigateForward('Address');
   }
 }

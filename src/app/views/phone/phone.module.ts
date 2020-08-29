@@ -1,3 +1,4 @@
+import { BrMaskerModule } from 'br-mask';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { PhonePage } from './phone.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    PhonePageRoutingModule
+    PhonePageRoutingModule,
+    BrMaskerModule
   ],
   declarations: [PhonePage]
 })

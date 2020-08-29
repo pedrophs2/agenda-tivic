@@ -3,7 +3,7 @@
     <ion-buttons slot='start'>
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Telefones</ion-title>
+    <ion-title>Telefone</ion-title>
     <ion-buttons slot='end' (click)='goHome()'>
       <ion-icon slot='icon-only' id='home-button' name='home-outline'></ion-icon>
     </ion-buttons>
@@ -11,5 +11,25 @@
 </ion-header>
 
 <ion-content>
+  <div class="ion-body">
+    <ion-list>
+      <ion-item>
+        <ion-label>Tipo</ion-label>
+        <ion-select [(ngModel)]='phone.tipo' interface='popover'>
+          <ion-select-option value='1'>Celular</ion-select-option>
+          <ion-select-option value='2'>Comercial</ion-select-option>
+          <ion-select-option value='3'>Fax</ion-select-option>
+          <ion-select-option value='4'>Residencial</ion-select-option>
+        </ion-select> 
+      </ion-item>
+      <ion-item>
+        <ion-label position='stacked'>Número</ion-label>
+        <ion-input [(ngModel)]='phone.numero' [brmasker]='{mask: "(00) 00000-0000"}'></ion-input>        
+      </ion-item>
+    </ion-list>
+  </div>
 
+  <div class='ion-body'>
+    <ion-button expand='block' color='secondary' fill='outline' (click)='createPhone()'>Salvar</ion-button>
+  </div>
 </ion-content>

@@ -8,6 +8,18 @@ import { NavController } from '@ionic/angular';
 })
 export class AddressPage implements OnInit {
 
+  address = {
+    id_pessoa: null,
+    logradouro: '',
+    numero: '',
+    complemento: '',
+    bairro: '',
+    cep: '',
+    cidade: '',
+    uf: '',
+    tipo: null
+  };
+
   constructor(private navc: NavController) { }
 
   ngOnInit() {
@@ -16,5 +28,7 @@ export class AddressPage implements OnInit {
   goHome(){
     this.navc.navigateRoot('Home');
   }
+
+  createAddress(){}
 
 }

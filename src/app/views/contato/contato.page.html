@@ -39,11 +39,11 @@
   
     <div class="ion-body">
       <ion-list>
-        <ion-list-header class='header-click' (click)='createPhone(pessoa.id)'>
+        <ion-list-header class='header-click' (click)='createPhone()'>
           <ion-label>Telefones</ion-label>
-          <ion-button><ion-icon slot='icon-only' name='chevron-forward'></ion-icon></ion-button>
+          <ion-button><ion-icon slot='icon-only' name='add-outline'></ion-icon></ion-button>
         </ion-list-header>
-        <ion-item *ngFor='let phone of phones'>
+        <ion-item *ngFor='let phone of phones' (click)='openPhone(phone)'>
           <ion-label>{{phone.numero}}</ion-label>
           <ion-icon slot='end' name='chevron-forward'></ion-icon>
         </ion-item>
@@ -52,11 +52,11 @@
   
     <div class="ion-body">
       <ion-list>
-        <ion-list-header class='header-click' (click)='createAddress(pessoa.id)'>
+        <ion-list-header class='header-click' (click)='createAddress()'>
           <ion-label>Endereços</ion-label>
-          <ion-button><ion-icon slot='icon-only' name='chevron-forward'></ion-icon></ion-button>
+          <ion-button><ion-icon slot='icon-only' name='add-outline'></ion-icon></ion-button>
         </ion-list-header>
-        <ion-item *ngFor='let address of addresses'>
+        <ion-item *ngFor='let address of addresses' (click)='openAddress(address)'>
           <ion-label>{{address.logradouro}}, {{address.numero}} - {{address.bairro}}</ion-label>
           <ion-icon slot='end' name='chevron-forward'></ion-icon>
         </ion-item>

@@ -20,7 +20,7 @@ export class MajLibService {
     Toast.present();
   }
 
-  async alert(Title: string, Message: string, Buttons: []){
+  async alert(Title: string, Message: string, Buttons: [string]){
     const Alert = await this.alertCtrl.create({
       header: Title,
       message: Message,

@@ -8,12 +8,15 @@ import { AddressPageRoutingModule } from './address-routing.module';
 
 import { AddressPage } from './address.page';
 
+import { BrMaskerModule } from 'br-mask';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AddressPageRoutingModule
+    AddressPageRoutingModule,
+    BrMaskerModule
   ],
   declarations: [AddressPage]
 })
