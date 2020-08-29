@@ -14,13 +14,17 @@ export class ContatoPage implements OnInit {
   id: any;
   button: string;
   show: boolean;
+  pessoa: any;
 
   person = {
-    id: '',
+    id: null,
     nome: '',
     sobrenome: '',
     nascimento: '',
-    email: ''
+    email: '',
+    foto: '',
+    telefones: [],
+    enderecos: []
   };
 
   telefone = '';
@@ -30,16 +34,8 @@ export class ContatoPage implements OnInit {
 
   ngOnInit() {
     if (this.personCtrl.pessoa == null){
-      this.person = {
-        id: '',
-        nome: '',
-        sobrenome: '',
-        nascimento: '',
-        email: ''
-      };
       this.button = 'Cadastrar';
       this.show = true;
-      return;
     }else{
       this.person = this.personCtrl.pessoa;
       this.person.nascimento = this.utils.dateConvert(this.person.nascimento, 'dd/MM/yyyy');
@@ -49,16 +45,19 @@ export class ContatoPage implements OnInit {
   }
 
   async postPerson(){
-    // if (await this.validatePhone() && await this.validadeAddress()){
-    //   this.person.telefones.push(this.telefone);
-    //   this.person.enderecos.push(this.endereco);
-    // }
-    // if (this.button === 'Cadastrar'){
-    //   this.personCtrl.createPerson(this);
-    // }
+    if (this.button === 'Cadastrar'){
+      this.person.nascimento = this.utils.hardDate(this.person.nascimento);
+      this.personCtrl.createPerson(this.person).subscribe(res => {
+        this.navc.pop();
+      });
+    }else{
+      this.person.nascimento = this.utils.hardDate(this.person.nascimento);
+      console.log(this.person);
+      this.personCtrl.updatePerson(this.person.id, this.person).subscribe(res => {
+        this.navc.pop();
+      });
+    }
 
-    this.person.nascimento = this.utils.hardDate(this.person.nascimento);
-    console.log(this.person);
   }
 
   async confirmDel(id){

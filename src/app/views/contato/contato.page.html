@@ -39,7 +39,7 @@
   
     <div class="ion-body">
       <ion-list>
-        <ion-list-header class='header-click' (click)='createPhone(person.id)'>
+        <ion-list-header class='header-click' (click)='createPhone(pessoa.id)'>
           <ion-label>Telefones</ion-label>
           <ion-button><ion-icon slot='icon-only' name='chevron-forward'></ion-icon></ion-button>
         </ion-list-header>
@@ -52,7 +52,7 @@
   
     <div class="ion-body">
       <ion-list>
-        <ion-list-header class='header-click' (click)='createAddress(person.id)'>
+        <ion-list-header class='header-click' (click)='createAddress(pessoa.id)'>
           <ion-label>Endereços</ion-label>
           <ion-button><ion-icon slot='icon-only' name='chevron-forward'></ion-icon></ion-button>
         </ion-list-header>
@@ -65,7 +65,7 @@
 
     <div class='ion-body'>
       <ion-button expand='block' color='secondary' type='submit' fill='outline'>{{button}}</ion-button>
-      <ion-button expand='block' color='danger' [hidden]=show fill='outline' id="delete-button" (click)='confirmDel(person.id)'>
+      <ion-button expand='block' color='danger' [hidden]=show fill='outline' id="delete-button" (click)='confirmDel(pessoa.id)'>
         <ion-icon slot='start' name='trash-outline'></ion-icon>
         Apagar
       </ion-button>

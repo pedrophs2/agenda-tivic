@@ -18,8 +18,8 @@ export class PeopleService {
     return this.http.post('https://agendjango.herokuapp.com/api/pessoas/', person);
   }
 
-  updatePerson(person){
-    return this.http.put('https://agendjango.herokuapp.com/api/pessoas/', person);
+  updatePerson(id, person){
+    return this.http.put('https://agendjango.herokuapp.com/api/pessoas/' + id + '/', person);
   }
 
   deletePerson(id){

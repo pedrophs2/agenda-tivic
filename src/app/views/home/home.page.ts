@@ -14,9 +14,6 @@ export class HomePage implements OnInit {
   constructor(private navc: NavController, private personCtrl: PeopleService) { }
 
   ngOnInit() {
-    this.personCtrl.getPeople().subscribe(res => {
-      this.pessoas = res;
-    });
   }
 
   ionViewDidEnter(){
