@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { ToastController, AlertController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
+import { PhonesService } from './phones.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MajLibService {
 
-  constructor(private toastCtrl: ToastController, private alertCtrl: AlertController, private date: DatePipe) { }
+  // tslint:disable-next-line: max-line-length
+  constructor(private toastCtrl: ToastController, private alertCtrl: AlertController, private date: DatePipe, private phoneCtrl: PhonesService) { }
 
   async toast(Title: string, Message: string, Duration: number, Buttons: [string]){
     const Toast = await this.toastCtrl.create({
@@ -93,5 +95,21 @@ export class MajLibService {
     }else{
       return false;
     }
+  }
+
+  validatePhone(tel: string){
+    let list: any;
+    let contain = false;
+
+    this.phoneCtrl.getPhones().subscribe(res => {
+      list = res;
+
+      list.forEach(phone => {
+        if (phone.numero === tel){
+          contain = true;
+        }
+      });
+      return contain;
+    });
   }
 }

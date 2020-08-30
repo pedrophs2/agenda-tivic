@@ -43,16 +43,32 @@ export class PhonePage implements OnInit {
 
   submitPhone(){
     this.phone.id_pessoa = this.peopleCtrl.pessoa.id;
+    let lst: any;
 
-    if (this.button == 'Cadastrar'){
-      this.phoneCtrl.createPhone(this.phone).subscribe(res => {
-        this.navc.pop();
+    this.phoneCtrl.getPhones().subscribe(res => {
+      lst = res;
+      let matchs = 0;
+
+      lst.forEach(phone => {
+        if (phone.numero === this.phone.numero){
+          matchs ++;
+        }
       });
-    }else{
-      this.phoneCtrl.updatePhone(this.phone.id, this.phone).subscribe(res => {
-        this.navc.pop();
-      });
-    }
+
+      if (matchs === 0){
+        if (this.button === 'Cadastrar'){
+          this.phoneCtrl.createPhone(this.phone).subscribe(res => {
+            this.navc.pop();
+          });
+        }else{
+          this.phoneCtrl.updatePhone(this.phone.id, this.phone).subscribe(res => {
+            this.navc.pop();
+          });
+        }
+      }else{
+        this.utils.toast('Telefone', 'Número já cadastrado', 2000, ['OK']);
+      }
+    });
   }
 
   async confirmDel(id){
@@ -67,5 +83,4 @@ export class PhonePage implements OnInit {
       this.navc.pop();
     });
   }
-
 }
