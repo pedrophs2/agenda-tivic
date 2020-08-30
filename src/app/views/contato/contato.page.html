@@ -37,7 +37,7 @@
       </ion-list>
     </div>
   
-    <div class="ion-body">
+    <div class="ion-body" [hidden]=show>
       <ion-list>
         <ion-list-header class='header-click' (click)='createPhone()'>
           <ion-label>Telefones</ion-label>
@@ -50,7 +50,7 @@
       </ion-list>
     </div>
   
-    <div class="ion-body">
+    <div class="ion-body" [hidden]=show>
       <ion-list>
         <ion-list-header class='header-click' (click)='createAddress()'>
           <ion-label>Endereços</ion-label>
