@@ -22,3 +22,7 @@ Logo em seguida, execute o seguinte comando no CMD, dentro do diretório do proj
 Para executar a aplicação, basta executar o seguinte comando no CMD, dentro do diretório do projeto:
 
   "ionic serve"
+  
+Ou, para uma prévia de como é a interface da aplicação em dispositivos móveis iOS e Android:
+
+  "ionic serve --labs"
