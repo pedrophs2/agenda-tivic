@@ -9,7 +9,7 @@ Desenvolvido em Ionic/Angular, utilizando WebAPI como fonte de dados.
 
 # Instalação
 
-Caso o Ionic não esteja instalado na sua máquina, rode o seguinte comando no cmd:
+Caso o Ionic não esteja instalado na sua máquina, rode o seguinte comando no CMD:
 
   "npm install -g @ionic/cli"
 
@@ -19,6 +19,6 @@ Logo em seguida, execute o seguinte comando no CMD, dentro do diretório do proj
   
 # Execução
   
-Para executar a aplicação, basta executar o seguinte comando no CMD, dentro do diretório do projeto.
+Para executar a aplicação, basta executar o seguinte comando no CMD, dentro do diretório do projeto:
 
   "ionic serve"
